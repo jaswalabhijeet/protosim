@@ -56,11 +56,14 @@ function getTodos(req, res) {
 
             for (var i = 0; i < todos.length; i++) {
                 var dataSTR = hexToStr(todos[i].data);
-                var documento = JSON.parse(dataSTR);
 
-                //restringe apenas as transacoes cujo destinario eh o endereco da caixa de entrada
-                if (documento.des == destinatario) {
-                    resposta.push(documento);
+                if (dataSTR.indexOf('nup') > 0) {
+                    var documento = JSON.parse(dataSTR);
+
+                    //restringe apenas as transacoes cujo destinario eh o endereco da caixa de entrada
+                    if (documento.des == destinatario) {
+                        resposta.push(documento);
+                    }
                 }
             };
             //ordena a caixa de entrada
