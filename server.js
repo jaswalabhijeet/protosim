@@ -34,7 +34,6 @@ multichain.getNewAddress((err, newAddress) => {
 		if(err){
 	    	console.log(err);
 		}
-	    console.log(res)
 	});
 });
 multichain.getNewAddress((err, newAddress) => {
