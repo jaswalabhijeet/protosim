@@ -1,0 +1,14 @@
+{
+  "name": "protoSim",
+  "version": "0.0.1",
+  "description": "Protocolo Simples",
+  "main": "server.js",
+  "author": "Rodrigo Vilela",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.13.4",
+    "method-override": "^2.1.3",
+    "multichain-node": "^1.7.0",
+    "morgan": "^1.1.1"
+  }
+}

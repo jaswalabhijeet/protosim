@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html ng-app="protoSim">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ProtoSim</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:30px; }
+		#todo-form 	 			{ margin-bottom:30px; }
+	</style>
+
+	<style>
+		table, th , td {
+		  border: 1px solid grey;
+		  border-collapse: collapse;
+		  padding: 5px;
+		}
+		table tr:nth-child(odd) {
+		  background-color: #f1f1f1;
+		}
+		table tr:nth-child(even) {
+		  background-color: #ffffff;
+		}
+	</style> 
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="js/controllers/main.js"></script> 
+	<script src="js/services/documentos.js"></script> 
+	<script src="js/core.js"></script> 
+
+</head>
+
+<body ng-controller="mainController">
+	<div class="container">
+
+		<div class="jumbotron text-center">
+			<h2>Protocolo Simples</h2>
+			<form>
+				<div class="form-group">
+					<input type="text" class="form-control input-lg" placeholder="Informar endereço" ng-model="formData.origem" ng-blur="carregar()"">
+				</div>
+			</form>
+			<p ng-show="todos">Caixa de Entrada: 
+				<span class="label label-info">{{ todos.length }}</span> 
+			</p>
+			<table ng-show="todos">
+			   <tr>
+			   	  <th>Data</th>
+			      <th>NUP</th>
+			      <th>Assunto</th>
+			      <th>Remetente</th>
+			   </tr>
+			   
+			   <tr ng-repeat = "documento in todos">
+			      <td>{{ documento.dat  | date:'dd/MM/yy HH:mm:ss'}}</td>
+			      <td>{{ documento.nup }}</td>
+			      <td>{{ documento.ass }}</td>
+			      <td>{{ documento.rem }}</td>
+			   </tr>
+			</table>
+		</div>
+
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+						<input type="hidden" class="form-control input-lg" ng-model="formData.origem" value="{{formData.origem}}">
+						<input type="text" class="form-control input-lg" placeholder="Destino" ng-model="formData.destino">
+						<input type="text" class="form-control input-lg" placeholder="NUP" ng-model="formData.nup">
+						<input type="text" class="form-control input-lg" placeholder="Assunto" ng-model="formData.assunto">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Enviar</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
